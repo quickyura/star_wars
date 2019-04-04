@@ -13,37 +13,37 @@ class Service {
 
     async getAllPeople() {
         const res = await this.getResorce(`/people/`);
-        return res.results
+        return res.results.map(this._catalog)
 
     }
 
-    getPeople(id) {
-        return this.getResorce(`/people/${id}/`)
+    async getPeople(id) {
+        const people = this.getResorce(`/people/${id}/`);
+        return this._catalog(people)
     }
 
     async getAllPlanets() {
         const res = await  this.getResorce('/planets/');
-        console.log(this._catalogPlanet())
         return res.results.map(this._catalogPlanet);
     }
 
     async getPlanet(id) {
         const planet = await this.getResorce(`/planets/${id}/`);
-        return this._catalogPlanet(planet);
+        return this._catalog(planet);
     }
 
     async getAllStarships() {
         const res = await  this.getResorce('/starships/');
-        return res.results.map(this._catalogPlanet)
+        return res.results.map(this._catalog)
     }
 
     async getStarships(id) {
         const ships = this.getResorce(`/starships/${id}/`);
-        return this._catalogPlanet(ships)
+        return this._catalog(ships)
     }
 
 
-    _catalogPlanet(planet) {
+    _catalog(planet) {
 
         return {
             id: this.redExp(planet),
