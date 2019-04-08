@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Service from '../Service/service'
-import Spiner from '../spiner/spiner'
+import Spinner from '../Spinner/spinner'
 
 class Planets extends Component {
     service = new Service();
@@ -11,10 +11,10 @@ class Planets extends Component {
 
     };
 
-    constructor() {
-        super();
+
+    componentDidMount(){
         this.loadPlenets();
-       setInterval( this.loadPlenets,6000);
+        //setInterval( this.loadPlenets,6000);
     }
 
     error = () => {
@@ -35,7 +35,7 @@ class Planets extends Component {
     render() {
         const {planet, loader, error} = this.state;
         const messagError = error ? <MessageError error={error}/> : null;
-        const content = loader ? <Spiner/> : <Planet planet={planet}/>;
+        const content = loader ? <Spinner/> : <Planet planet={planet}/>;
         return (
             <div className="wrapAllPlanet">
                 {messagError}

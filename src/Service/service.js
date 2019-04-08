@@ -13,13 +13,13 @@ class Service {
 
     async getAllPeople() {
         const res = await this.getResorce(`/people/`);
-        return res.results.map(this._catalog)
+      return res.results.map(this._catalogPeople);
 
     }
 
     async getPeople(id) {
-        const people = this.getResorce(`/people/${id}/`);
-        return this._catalog(people)
+         const people = await this.getResorce(`/people/${id}/`);
+         return this._catalogPeople(people)
     }
 
     async getAllPlanets() {
@@ -29,21 +29,32 @@ class Service {
 
     async getPlanet(id) {
         const planet = await this.getResorce(`/planets/${id}/`);
-        return this._catalog(planet);
+        return this._catalogPlanet(planet);
     }
 
     async getAllStarships() {
-        const res = await  this.getResorce('/starships/');
-        return res.results.map(this._catalog)
+        const res = await this.getResorce('/starships/');
+        return res.results.map(this._catalogStarships)
     }
 
     async getStarships(id) {
         const ships = this.getResorce(`/starships/${id}/`);
-        return this._catalog(ships)
+        return this._catalogStarships(ships)
     }
+    _catalogPeople =(people)=>{
+        return{
+            id: this.redExp(people),
+            name:people.name,
+            mass:people.mass,
+            gender:people.gender,
+            birthYear:people.birth_year,
+            hairColor:people.hair_color,
+            height:people.height
 
+        }
+    };
 
-    _catalog(planet) {
+    _catalogPlanet=(planet)=> {
 
         return {
             id: this.redExp(planet),
@@ -53,7 +64,23 @@ class Service {
             diameter: planet.diameter
         }
 
-    }
+    };
+
+    _catalogStarships=(ships)=>{
+        return{
+            id: this.redExp(ships),
+            name: ships.name,
+            cargoCapacity:ships.cargo_capacity,
+            consumables:ships.consumables,
+            cost_in_credits:ships.cost_in_credits,
+            crew:ships.crew,
+            length:ships.length,
+            maxAtmospheringSpeed:ships.max_atmosphering_speed,
+            passengers:ships.passengers
+
+        }
+
+    };
 
     redExp = (item) => {
         const idReg = /\/([0-9]*)\/$/;
