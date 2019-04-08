@@ -23,36 +23,31 @@ class ItemList extends Component {
         console.log('test')
     }
     //
-    // returnItemLi(arr){
-    //
-    //     const r= arr.map((people)=>{
-    //         console.log(people)
-    //         // return(
-    //         // <li className="listItem"
-    //         //     key={people.id}
-    //         //     onClick={this.fullDanie(people.id)}
-    //         // >{people.name}</li>
-    //         // )
-    //     })
-    //
-    // };
-    r=(i)=>{
-        console.log(i);
-     return  this.state.peopleList.map(i=>{
-         return i
-     })
+    returnItemLi(arr){
+
+       return arr.map((people)=>{
+            console.log(people)
+            return(
+            <li className="listItem"
+                key={people.id}
+                onClick={this.fullDanie(people.id)}
+            >{people.name}</li>
+            )
+        })
+
     };
+
 
 
     render() {
         const {peopleList} = this.state;
 
-      const s= this.r(peopleList);
+      const itemLi = this.returnItemLi(peopleList);
 
 
         return (
             <ul className="wrap_list">
-                {/*{itemLi}*/}
+                {itemLi}
             </ul>
         )
     }
