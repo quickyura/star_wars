@@ -60,7 +60,9 @@ html, body {
           margin-left: 10px; }
   .start_Db section {
     width: 100%;
-    display: flex; }
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 30px; }
     .start_Db section .wrap_list {
       width: 50%;
       height: fit-content;
@@ -69,15 +71,18 @@ html, body {
         margin: 20px;
         border-bottom: 1px solid #4c4c4c;
         padding: 0 6px;
-        font-size: 20px; }
+        font-size: 20px;
+        color: white;
+        cursor: pointer; }
     .start_Db section .wrapAllPersonnalDet {
       width: 50%;
       display: flex;
       margin-left: 30px;
       box-shadow: 1px 1px 9px 2px #171717; }
       .start_Db section .wrapAllPersonnalDet .wrapAllPersonnalDet_img {
-        width: 200px;
+        max-width: 150px;
         height: 200px;
+        object-fit: contain;
         margin: 20px; }
       .start_Db section .wrapAllPersonnalDet .wrap_PersonnalDet_span {
         display: flex;

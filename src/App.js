@@ -7,7 +7,16 @@ import ItemList from './ItemList/itemlist';
 import PersonalDetails from './Personal-details/PersonalDetails'
 
 class App extends Component {
+    state = {
+        personalInformation: 1
+    };
+    fullDanie = (id) => {
+        console.log(this.state.personalInformation)
+        this.setState({
+            personalInformation: id
+        });
 
+    };
 
     render() {
         return (
@@ -15,8 +24,8 @@ class App extends Component {
                 <Header/>
                 <Planets/>
                 <section>
-                    <ItemList/>
-                    <PersonalDetails/>
+                    <ItemList fullDanie={this.fullDanie}/>
+                    <PersonalDetails personDet = {this.state.personalInformation}/>
                 </section>
 
             </div>

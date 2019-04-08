@@ -14,7 +14,10 @@ class Planets extends Component {
 
     componentDidMount(){
         this.loadPlenets();
-        //setInterval( this.loadPlenets,6000);
+        setInterval( this.loadPlenets,6000);
+    }
+    componentWillUnmount(){
+        clearInterval(this.loadPlenets)
     }
 
     error = () => {

@@ -1,11 +1,15 @@
 import React, {Component} from 'react';
 import Service from '../Service/service'
+import Spinner from '../Spinner/spinner'
 
 class ItemList extends Component {
     serviceApi = new Service();
 
     state = {
-        peopleList: null
+        peopleList: null,
+        error: false
+
+
     };
 
     componentDidMount() {
@@ -16,41 +20,53 @@ class ItemList extends Component {
                 this.setState({
                     peopleList
                 })
-            });
+            })
+            .catch(this.error);
 
     }
-    fullDanie(){
-        console.log('test')
-    }
-    //
-    returnItemLi(arr){
 
-       return arr.map((people)=>{
-            console.log(people)
-            return(
-            <li className="listItem"
-                key={people.id}
-                onClick={this.fullDanie(people.id)}
-            >{people.name}</li>
-            )
+    error = () => {
+        this.setState({
+            error: true
         })
-
     };
 
 
 
+    returnItemLi(peopleList) {
+        return peopleList.map((people) => {
+            return (
+                <li className="listItem"
+                    key={people.id}
+                    onClick={()=>this.props.fullDanie(people.id)}
+                >{people.name}
+                </li>
+            )
+        })
+    };
+
+
     render() {
-        const {peopleList} = this.state;
-
-      const itemLi = this.returnItemLi(peopleList);
-
-
+        const {peopleList,error} = this.state;
+        if (!peopleList) {
+            return <Spinner/>
+        }
+        const list = this.returnItemLi(peopleList);
+        const mesError = error ? <MessageError error={error}/>: null;
         return (
             <ul className="wrap_list">
-                {itemLi}
+                {mesError}
+                {list}
             </ul>
         )
     }
 }
 
+const MessageError = () => {
+    return (
+        <React.Fragment>
+            <li className="messagError">the person is in no reach zone</li>
+        </React.Fragment>
+    )
+}
 export default ItemList;

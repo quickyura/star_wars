@@ -82,8 +82,9 @@ html, body {
   }
   section{
     width: 100%;
-
     display: flex;
+    align-items:flex-start;
+    margin-bottom: 30px;
     .wrap_list{
       width: 50%;
       height: fit-content;
@@ -93,6 +94,8 @@ html, body {
        border-bottom:$border-bottom ;
        padding: $padding;
        font-size: $font_size;
+       color:$color ;
+       cursor: pointer;
      }
 
     }
@@ -102,8 +105,9 @@ html, body {
       margin-left:30px ;
       box-shadow: $box_shadow;
       .wrapAllPersonnalDet_img{
-        width: 200px;
+        max-width: 150px;
         height: 200px;
+        object-fit: contain;
         margin: 20px;
       }
       .wrap_PersonnalDet_span{
